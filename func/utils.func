@@ -1,0 +1,32 @@
+slice address(int wc, int addr) inline {
+
+  ;; addr_std$10 anycast:(Maybe Anycast)
+  ;; workchain_id:int8 address:bits256 = MsgAddressInt;
+
+  return begin_cell()
+    .store_uint(2, 2) ;; addr_std$10
+    .store_uint(0, 1) ;; anycast nothing
+    .store_int(wc, 8) ;; workchain_id:int8
+    .store_uint(addr, 256) ;; address:bits256
+    .end_cell()
+    .begin_parse();
+}
+
+cell build_message(slice addr, int op, int query_id, int amount, builder payload) inline {
+  var msg = begin_cell()
+    .store_uint(0x18, 6)
+    .store_slice(addr)
+    .store_grams(amount)
+    .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+    .store_uint(op, 32)
+    .store_uint(query_id, 64);
+
+  if(msg.builder_bits() + payload.builder_bits() > 1023) {
+    msg = msg.store_uint(1,1) ;; Either ^X
+      .store_ref(payload.end_cell());
+  } else {
+    msg = msg.store_uint(1,1).store_builder(payload);
+  }
+
+  return msg.end_cell();
+}

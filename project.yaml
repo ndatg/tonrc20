@@ -1,0 +1,20 @@
+contract:
+  func:
+    - func/nonstdlib.func
+    - func/utils.func
+    - func/op.func
+    - func/tonrc20.func
+  tests:
+    - tests/nonstdlib.func
+    - tests/utils.func
+    - func/op.func
+    - tests/op.func
+    - tests/01_data.func
+    - tests/02_methods.func
+    - tests/03_transfer.func
+    - tests/04_approve.func
+    - tests/05_increase_allowance.func
+    - tests/06_decrease_allowance.func
+    - tests/07_transfer_from.func
+    - tests/08_mint.func
+    - tests/09_burn.func

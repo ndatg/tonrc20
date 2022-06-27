@@ -1,0 +1,37 @@
+cell new_data() method_id {
+  cell name = begin_cell().store_uint(0x4d7920546f6b656e, 64).end_cell(); ;; My Token
+  cell symbol = begin_cell().store_uint(0x4d544b4e, 32).end_cell(); ;; MTKN
+  int decimals = 9;
+  int total_supply = 10000000000; ;; 10 MTKN
+  cell balances = new_dict();
+  cell allowances = new_dict();
+
+  ;;  mint tokens for 1 wallet
+  int owner_balance = 10000000000; ;; 10 MTKN
+  int owner_addr = 0x1111111111111111111111111111111111111111111111111111111111111111;
+  balances~udict_set_builder(256, owner_addr, begin_cell().store_uint(owner_balance, 256));
+
+  ;; add allowance for 2 wallet
+  int spender_allowance = 20000000000; ;; 20 MTKN
+  int spender_addr = 0x2222222222222222222222222222222222222222222222222222222222222222;
+  cell spender_dict = new_dict();
+  spender_dict~udict_set_builder(256, spender_addr, begin_cell().store_uint(spender_allowance, 256));
+  allowances~udict_set_builder(256, owner_addr, begin_cell().store_dict(spender_dict));
+
+  ;; add allowance for 7 wallet
+  int spender_allowance = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF; ;; unlimited MTKN
+  int spender_addr = 0x7777777777777777777777777777777777777777777777777777777777777777;
+  spender_dict~udict_set_builder(256, spender_addr, begin_cell().store_uint(spender_allowance, 256));
+  allowances~udict_set_builder(256, owner_addr, begin_cell().store_dict(spender_dict));
+
+  cell data = begin_cell()
+    .store_ref(name)
+    .store_ref(symbol)
+    .store_uint(decimals, 8)
+    .store_uint(total_supply, 256)
+    .store_dict(balances)
+    .store_dict(allowances)
+  .end_cell();
+
+  return data;
+}

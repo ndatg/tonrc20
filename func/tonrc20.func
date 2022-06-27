@@ -1,0 +1,293 @@
+;; fee
+int get_fee() asm "10000000 PUSHINT"; ;; 0.01 TON
+
+;; data
+() store_data(cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) impure {
+  set_data(
+    begin_cell()
+      .store_ref(name)
+      .store_ref(symbol)
+      .store_uint(decimals, 8)
+      .store_uint(total_supply, 256)
+      .store_dict(balances)
+      .store_dict(allowances)
+    .end_cell()
+  );
+}
+
+(cell, cell, int, int, cell, cell) load_data(cell data) {
+  slice ds = data.begin_parse();
+  cell name = ds~load_ref();
+  cell symbol = ds~load_ref();
+  int decimals = ds~load_uint(8);
+  int total_supply = ds~load_uint(256);
+  cell balances = ds~load_dict();
+  cell allowances = ds~load_dict();
+;;   ds.end_parse();
+
+  return (name, symbol, decimals, total_supply, balances, allowances);
+}
+
+(cell, (int)) ~get_balance(cell balances, slice account) inline_ref {
+  int res = 0;
+  (_, int account_addr) = account.parse_std_addr();
+  (slice balance_slice, int balance_found) = balances.udict_get?(256, account_addr);
+  if (balance_found) {
+    res = balance_slice~load_uint(256);
+  }
+
+  return (balances, (res));
+}
+
+(cell, ()) ~set_balance(cell balances, slice account, int amount) inline_ref {
+  (_, int account_addr) = account.parse_std_addr();
+  balances~udict_set_builder(256, account_addr, begin_cell().store_uint(amount, 256));
+
+  return (balances, ());
+}
+
+(cell, (int)) ~get_allowance(cell allowances, slice owner, slice spender) inline_ref {
+  int res = 0;
+  (_, int owner_addr) = owner.parse_std_addr();
+  (slice owner_slice, int owner_found) = allowances.udict_get?(256, owner_addr);
+  if (owner_found) {
+    cell spender_dict = owner_slice~load_dict();
+    (_, int spender_addr) = spender.parse_std_addr();
+    (slice spender_slice, int spender_found) = spender_dict.udict_get?(256, spender_addr);
+    if (spender_found) {
+      res = spender_slice~load_uint(256);
+    }
+  }
+
+  return (allowances, (res));
+}
+
+(cell, ()) ~set_allowance(cell allowances, slice owner, slice spender, int amount) inline_ref {
+  (_, int owner_addr) = owner.parse_std_addr();
+  (_, int spender_addr) = spender.parse_std_addr();
+  cell spender_dict = new_dict();
+  spender_dict~udict_set_builder(256, spender_addr, begin_cell().store_uint(amount, 256));
+  allowances~udict_set_builder(256, owner_addr, begin_cell().store_dict(spender_dict));
+
+  return (allowances, ());
+}
+
+() _before_token_transfer(slice from, slice to, int amount) inline_ref {
+  ;;
+}
+
+() _after_token_transfer(slice from, slice to, int amount) inline_ref {
+  ;;
+}
+
+() _transfer(slice from, slice to, int amount) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  (_, int from_addr) = from.parse_std_addr();
+  throw_unless(exception::transfer_from_zero_address(), from_addr != 0);
+  (_, int to_addr) = to.parse_std_addr();
+  throw_unless(exception::transfer_to_zero_address(), to_addr != 0);
+
+  _before_token_transfer(from, to, amount);
+
+  int from_balance = balances~get_balance(from);
+  int to_balance = balances~get_balance(to);
+  throw_unless(exception::transfer_amount_exceeds_balance(), from_balance >= amount);
+  balances~set_balance(from, from_balance - amount);
+  balances~set_balance(to, to_balance + amount);
+
+  store_data(name, symbol, decimals, total_supply, balances, allowances);
+
+  _after_token_transfer(from, to, amount);
+}
+
+() _approve(slice owner, slice spender, int amount) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  (_, int owner_addr) = owner.parse_std_addr();
+  throw_unless(exception::approve_from_zero_address(), owner_addr != 0);
+  (_, int spender_addr) = spender.parse_std_addr();
+  throw_unless(exception::approve_to_zero_address(), spender_addr != 0);
+
+  allowances~set_allowance(owner, spender, amount);
+
+  store_data(name, symbol, decimals, total_supply, balances, allowances);
+}
+
+() _spend_allowance(slice owner, slice spender, int amount) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  int current_allowance = allowances~get_allowance(owner, spender);
+  if (current_allowance != 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF) {
+    throw_unless(exception::insufficient_allowance(), current_allowance >= amount);
+    _approve(owner, spender, current_allowance - amount);
+  }
+}
+
+() _mint(slice account, int amount) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  (_, int account_addr) = account.parse_std_addr();
+  throw_unless(exception::mint_to_the_zero_address(), account_addr != 0);
+
+  _before_token_transfer(address(-1, 0), account, amount);
+
+  total_supply += amount;
+  int account_balance = balances~get_balance(account);
+  balances~set_balance(account, account_balance + amount);
+
+  store_data(name, symbol, decimals, total_supply, balances, allowances);
+
+  _after_token_transfer(address(-1, 0), account, amount);
+}
+
+() _burn(slice account, int amount) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  (_, int account_addr) = account.parse_std_addr();
+  throw_unless(exception::burn_from_the_zero_address(), account_addr != 0);
+
+  _before_token_transfer(account, address(-1, 0), amount);
+
+  int account_balance = balances~get_balance(account);
+  throw_unless(exception::burn_amount_exceeds_balance(), account_balance >= amount);
+  balances~set_balance(account, account_balance - amount);
+  total_supply -= amount;
+
+  store_data(name, symbol, decimals, total_supply, balances, allowances);
+
+  _after_token_transfer(account, address(-1, 0), amount);
+}
+
+() transfer(slice src_addr, slice in_msg) impure {
+  (slice from, slice to, int amount) = (src_addr, in_msg~load_msg_addr(), in_msg~load_uint(256));
+  _transfer(from, to, amount);
+}
+
+() approve(slice src_addr, slice in_msg) impure {
+  (slice owner, slice spender, int amount) = (src_addr, in_msg~load_msg_addr(), in_msg~load_uint(256));
+  _approve(owner, spender, amount);
+}
+
+() increase_allowance(slice src_addr, slice in_msg) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  (slice owner, slice spender, int added_value) = (src_addr, in_msg~load_msg_addr(), in_msg~load_uint(256));
+  int current_allowance = allowances~get_allowance(owner, spender);
+
+  _approve(owner, spender, current_allowance + added_value);
+}
+
+() decrease_allowance(slice src_addr, slice in_msg) impure {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+
+  (slice owner, slice spender, int subtracted_value) = (src_addr, in_msg~load_msg_addr(), in_msg~load_uint(256));
+  int current_allowance = allowances~get_allowance(owner, spender);
+  throw_unless(exception::decreased_allowance_below_zero(), current_allowance >= subtracted_value);
+
+  _approve(owner, spender, current_allowance - subtracted_value);
+}
+
+() transfer_from(slice src_addr, slice in_msg) impure {
+  (slice spender, slice from, slice to, int amount) = (src_addr, in_msg~load_msg_addr(), in_msg~load_msg_addr(), in_msg~load_uint(256));
+
+  _spend_allowance(from, spender, amount);
+  _transfer(from, to, amount);
+}
+
+() send_message_back(slice src_addr, int op, int query_id, int amount, int mode, int reserve) impure {
+  if (reserve > 0) {
+    raw_reserve(reserve, 0);
+  }
+
+  cell msg = build_message(src_addr, op, query_id, amount, begin_cell());
+  send_raw_message(msg, mode);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+  slice cs = in_msg_cell.begin_parse();
+
+  int flags = cs~load_uint(4);
+  if (flags & 1) {
+    return ();
+  }
+
+  if (in_msg.slice_empty?()) {
+    return ();
+  }
+
+  slice src_addr = cs~load_msg_addr();
+  (int op, int query_id) = (in_msg~load_uint(32), in_msg~load_uint(64));
+  if (op == op::transfer()) {
+    transfer(src_addr, in_msg);
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+  if (op == op::approve()) {
+    approve(src_addr, in_msg);
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+  if (op == op::increase_allowance()) {
+    increase_allowance(src_addr, in_msg);
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+  if (op == op::decrease_allowance()) {
+    decrease_allowance(src_addr, in_msg);
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+  if (op == op::transfer_from()) {
+    transfer_from(src_addr, in_msg);
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+  if (op == op::mint()) {
+    _mint(in_msg~load_msg_addr(), in_msg~load_uint(256));
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+  if (op == op::burn()) {
+    _burn(in_msg~load_msg_addr(), in_msg~load_uint(256));
+    send_message_back(src_addr, op, query_id, 0, 128, pair_first(get_contract_balance()) + get_fee() - msg_value);
+    return ();
+  }
+
+  send_message_back(src_addr, 0xffffffff, 0, 0, 64, 0);
+  return ();
+}
+
+() recv_external(slice in_msg) {
+}
+
+;; get methods
+cell name() method_id {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+  return name;
+}
+
+cell symbol() method_id {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+  return symbol;
+}
+
+int decimals() method_id {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+  return decimals;
+}
+
+int total_supply() method_id {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+  return total_supply;
+}
+
+int balance_of(slice account) method_id {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+  return balances~get_balance(account);
+}
+
+int allowance(slice owner, slice spender) method_id {
+  (cell name, cell symbol, int decimals, int total_supply, cell balances, cell allowances) = load_data(get_data());
+  return allowances~get_allowance(owner, spender);
+}

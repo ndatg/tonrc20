@@ -1,0 +1,1777 @@
+"Asm.fif" include
+// automatically generated from `/Users/user/Library/Application Support/toncli/func-libs/stdlib-tests.func` `/Users/user/Library/Application Support/toncli/func-libs/tests-helpers.func` `/Users/user/WebstormProjects/tonrc20cli/tests/nonstdlib.func` `/Users/user/WebstormProjects/tonrc20cli/tests/utils.func` `/Users/user/WebstormProjects/tonrc20cli/func/op.func` `/Users/user/WebstormProjects/tonrc20cli/tests/op.func` `/Users/user/WebstormProjects/tonrc20cli/tests/01_data.func` `/Users/user/WebstormProjects/tonrc20cli/tests/02_methods.func` `/Users/user/WebstormProjects/tonrc20cli/tests/03_transfer.func` `/Users/user/WebstormProjects/tonrc20cli/tests/04_approve.func` `/Users/user/WebstormProjects/tonrc20cli/tests/05_increase_allowance.func` `/Users/user/WebstormProjects/tonrc20cli/tests/06_decrease_allowance.func` `/Users/user/WebstormProjects/tonrc20cli/tests/07_transfer_from.func` `/Users/user/WebstormProjects/tonrc20cli/tests/08_mint.func` `/Users/user/WebstormProjects/tonrc20cli/tests/09_burn.func` 
+PROGRAM{
+  85860 DECLMETHOD get_c7
+  69216 DECLMETHOD address
+  87059 DECLMETHOD build_message
+  107360 DECLMETHOD new_data
+  0 DECLMETHOD name_data
+  1 DECLMETHOD name
+  2 DECLMETHOD symbol_data
+  3 DECLMETHOD symbol
+  4 DECLMETHOD decimals_data
+  5 DECLMETHOD decimals
+  6 DECLMETHOD total_supply_data
+  7 DECLMETHOD total_supply
+  8 DECLMETHOD balance_of_data
+  9 DECLMETHOD balance_of
+  10 DECLMETHOD allowance_data
+  11 DECLMETHOD allowance
+  12 DECLMETHOD transfer_data
+  13 DECLMETHOD transfer
+  14 DECLMETHOD from_balance_of_after_transfer_data
+  15 DECLMETHOD from_balance_of_after_transfer
+  16 DECLMETHOD to_balance_of_after_transfer_data
+  17 DECLMETHOD to_balance_of_after_transfer
+  18 DECLMETHOD transfer_from_zero_address_data
+  19 DECLMETHOD transfer_from_zero_address
+  20 DECLMETHOD transfer_to_zero_address_data
+  21 DECLMETHOD transfer_to_zero_address
+  22 DECLMETHOD transfer_amount_exceeds_balance_data
+  23 DECLMETHOD transfer_amount_exceeds_balance
+  24 DECLMETHOD approve_data
+  25 DECLMETHOD approve
+  26 DECLMETHOD spender_allowance_after_approve_data
+  27 DECLMETHOD spender_allowance_after_approve
+  28 DECLMETHOD approve_from_zero_address_data
+  29 DECLMETHOD approve_from_zero_address
+  30 DECLMETHOD approve_to_zero_address_data
+  31 DECLMETHOD approve_to_zero_address
+  32 DECLMETHOD approve_with_approved_amount_data
+  33 DECLMETHOD approve_with_approved_amount
+  34 DECLMETHOD spender_allowance_after_approve_with_approved_amount_data
+  35 DECLMETHOD spender_allowance_after_approve_with_approved_amount
+  36 DECLMETHOD increase_allowance_data
+  37 DECLMETHOD increase_allowance
+  38 DECLMETHOD spender_allowance_after_increase_allowance_data
+  39 DECLMETHOD spender_allowance_after_increase_allowance
+  40 DECLMETHOD decrease_allowance_data
+  41 DECLMETHOD decrease_allowance
+  42 DECLMETHOD spender_allowance_after_decrease_allowance_data
+  43 DECLMETHOD spender_allowance_after_decrease_allowance
+  44 DECLMETHOD decrease_allowance_to_zero_data
+  45 DECLMETHOD decrease_allowance_to_zero
+  46 DECLMETHOD spender_allowance_after_decrease_allowance_to_zero_data
+  47 DECLMETHOD spender_allowance_after_decrease_allowance_to_zero
+  48 DECLMETHOD decrease_allowance_below_zero_data
+  49 DECLMETHOD decrease_allowance_below_zero
+  50 DECLMETHOD transfer_from_data
+  51 DECLMETHOD transfer_from
+  52 DECLMETHOD allowance_after_transfer_from_data
+  53 DECLMETHOD allowance_after_transfer_from
+  54 DECLMETHOD from_balance_of_after_transfer_from_data
+  55 DECLMETHOD from_balance_of_after_transfer_from
+  56 DECLMETHOD to_balance_of_after_transfer_from_data
+  57 DECLMETHOD to_balance_of_after_transfer_from
+  58 DECLMETHOD owner_has_not_enough_balance_transfer_from_data
+  59 DECLMETHOD owner_has_not_enough_balance_transfer_from
+  60 DECLMETHOD spender_does_not_have_enough_allowance_data
+  61 DECLMETHOD spender_does_not_have_enough_allowance
+  62 DECLMETHOD spender_has_unlimited_allowance_data
+  63 DECLMETHOD spender_has_unlimited_allowance
+  64 DECLMETHOD spender_allowance_after_spender_has_unlimited_allowance_data
+  65 DECLMETHOD spender_allowance_after_spender_has_unlimited_allowance
+  66 DECLMETHOD mint_data
+  67 DECLMETHOD mint
+  68 DECLMETHOD total_supply_after_mint_data
+  69 DECLMETHOD total_supply_after_mint
+  70 DECLMETHOD balance_of_after_mint_data
+  71 DECLMETHOD balance_of_after_mint
+  72 DECLMETHOD mint_to_zero_address_data
+  73 DECLMETHOD mint_to_zero_address
+  74 DECLMETHOD burn_data
+  75 DECLMETHOD burn
+  76 DECLMETHOD total_supply_after_burn_data
+  77 DECLMETHOD total_supply_after_burn
+  78 DECLMETHOD balance_of_after_burn_data
+  79 DECLMETHOD balance_of_after_burn
+  80 DECLMETHOD burn_from_zero_address_data
+  81 DECLMETHOD burn_from_zero_address
+  82 DECLMETHOD burn_for_less_amount_than_balance_data
+  83 DECLMETHOD burn_for_less_amount_than_balance
+  get_c7 PROC:<{
+    // 
+    124711402 PUSHINT	//  _2=124711402
+    0 PUSHINT	//  _2=124711402 _3=0
+    DUP	//  _2=124711402 _3=0 _4=0
+    NOW	//  _2=124711402 _3=0 _4=0 _5
+    1 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1
+    DUP	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1
+    239 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239
+    1000000000 PUSHINT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000
+    PUSHNULL	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _10=1000000000 _11
+    PAIR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12
+    MYADDR	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13
+    CONFIGROOT	//  _2=124711402 _3=0 _4=0 _5 _6=1 _7=1 _8=239 _12 _13 _14
+    10 TUPLE	//  _15
+    SINGLE	//  _16
+  }>
+  address PROC:<{
+    //  wc addr
+    0 PUSHINT	//  wc addr _2=0
+    2 PUSHINT	//  wc addr _2=0 _3=2
+    NEWC	//  wc addr _2=0 _3=2 _4
+    2 STU	//  wc addr _2=0 _6
+    1 STU	//  wc addr _8
+    s1 s2 XCHG	//  addr wc _8
+    8 STI	//  addr _10
+    256 STU	//  _12
+    ENDC	//  _13
+    CTOS	//  _14
+  }>
+  build_message PROC:<{
+    //  bounce src dest amount payload
+    0 PUSHINT	//  bounce src dest amount payload _6=0
+    NOW	//  bounce src dest amount payload _6=0 _7
+    LTIME	//  bounce src dest amount payload _6=0 _7 _8
+    PUSHNULL	//  bounce src dest amount payload _6=0 _7 _8 _9
+    s3 s3 s3 PUSH3	//  bounce src dest amount payload _6=0 _7 _8 _9 _10=0 _11=0 _12=0
+    NEWC	//  bounce src dest amount payload _6=0 _7 _8 _9 _10=0 _11=0 _12=0 _13
+    1 STU	//  bounce src dest amount payload _6=0 _7 _8 _9 _10=0 _11=0 _15
+    1 STU	//  bounce src dest amount payload _6=0 _7 _8 _9 _10=0 _17
+    s1 s10 XCHG	//  _10=0 src dest amount payload _6=0 _7 _8 _9 bounce _17
+    1 STU	//  _10=0 src dest amount payload _6=0 _7 _8 _9 _19
+    s1 s9 XCHG	//  _9 src dest amount payload _6=0 _7 _8 _10=0 _19
+    1 STU	//  _9 src dest amount payload _6=0 _7 _8 _21
+    s0 s7 XCHG2	//  _9 _8 dest amount payload _6=0 _7 _21 src
+    STSLICER	//  _9 _8 dest amount payload _6=0 _7 _22
+    s0 s5 XCHG2	//  _9 _8 _7 amount payload _6=0 _22 dest
+    STSLICER	//  _9 _8 _7 amount payload _6=0 _23
+    s0 s3 XCHG2	//  _9 _8 _7 _6=0 payload _23 amount
+    STGRAMS	//  _9 _8 _7 _6=0 payload _24
+    s1 s5 XCHG	//  payload _8 _7 _6=0 _9 _24
+    STDICT	//  payload _8 _7 _6=0 _25
+    OVER	//  payload _8 _7 _6=0 _25 _26=0
+    STGRAMS	//  payload _8 _7 _6=0 _27
+    OVER	//  payload _8 _7 _6=0 _27 _28=0
+    STGRAMS	//  payload _8 _7 _6=0 _29
+    s1 s3 XCHG	//  payload _6=0 _7 _8 _29
+    64 STU	//  payload _6=0 _7 _31
+    32 STU	//  payload _6=0 _33
+    1 STU	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _36
+    s2 PUSH	//  payload msg _36 payload
+    BBITS	//  payload msg _36 _37
+    ADD	//  payload msg _38
+    10 PUSHPOW2DEC	//  payload msg _38 _39=1023
+    GREATER	//  payload msg _40
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _41
+      1 PUSHINT
+      ROT	//  _41 _42=1 msg
+      1 STU	//  _41 _44
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      1 PUSHINT	//  payload msg _46=1
+      SWAP	//  payload _46=1 msg
+      1 STU	//  payload _48
+      SWAP	//  _48 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _50
+  }>
+  new_data PROC:<{
+    // 
+    5582528760121091438 PUSHINT	//  _1=5582528760121091438
+    NEWC	//  _1=5582528760121091438 _2
+    64 STU	//  _4
+    ENDC	//  name
+    1297369934 PUSHINT	//  name _7=1297369934
+    NEWC	//  name _7=1297369934 _8
+    32 STU	//  name _10
+    ENDC	//  name symbol
+    9 PUSHINT	//  name symbol decimals=9
+    10000000000 PUSHINT	//  name symbol decimals=9 total_supply=10000000000
+    NEWDICT	//  name symbol decimals=9 total_supply=10000000000 balances
+    NEWDICT	//  name symbol decimals=9 total_supply=10000000000 balances allowances
+    s2 PUSH	//  name symbol decimals=9 total_supply=10000000000 balances allowances owner_balance=10000000000
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  name symbol decimals=9 total_supply=10000000000 balances allowances owner_balance=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    SWAP
+    NEWC	//  name symbol decimals=9 total_supply=10000000000 balances allowances owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 owner_balance=10000000000 _25
+    256 STU	//  name symbol decimals=9 total_supply=10000000000 balances allowances owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 _27
+    s0 s0 s3 XCPUXC
+    8 PUSHPOW2	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances _27 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 balances _28=256
+    DICTUSETB	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances
+    20000000000 PUSHINT	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_allowance=20000000000
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_allowance=20000000000 spender_addr=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    NEWDICT	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_allowance=20000000000 spender_addr=15438945231642159389809464667825054380435997955418741871927677867721750618658 spender_dict
+    s0 s2 XCHG
+    NEWC	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict spender_addr=15438945231642159389809464667825054380435997955418741871927677867721750618658 spender_allowance=20000000000 _37
+    256 STU	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict spender_addr=15438945231642159389809464667825054380435997955418741871927677867721750618658 _39
+    s0 s2 XCHG
+    8 PUSHPOW2	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances _39 spender_addr=15438945231642159389809464667825054380435997955418741871927677867721750618658 spender_dict _40=256
+    DICTUSETB	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict
+    DUP
+    NEWC	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict spender_dict _43
+    STDICT	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict _44
+    s0 s4 s3 XCPUXC
+    8 PUSHPOW2	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 spender_dict balances _44 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances _45=256
+    DICTUSETB	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 spender_dict balances allowances
+    256 PUSHPOW2DEC	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 spender_dict balances allowances spender_allowance=115792089237316195423570985008687907853269984665640564039457584007913129639935
+    54036308310747557864333126337387690331525992843965596551746872537026127165303 PUSHINT	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 spender_dict balances allowances spender_allowance=115792089237316195423570985008687907853269984665640564039457584007913129639935 spender_addr=54036308310747557864333126337387690331525992843965596551746872537026127165303
+    SWAP
+    NEWC	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 spender_dict balances allowances spender_addr=54036308310747557864333126337387690331525992843965596551746872537026127165303 spender_allowance=115792089237316195423570985008687907853269984665640564039457584007913129639935 _52
+    256 STU	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 spender_dict balances allowances spender_addr=54036308310747557864333126337387690331525992843965596551746872537026127165303 _54
+    s0 s1 s4 XCHG3
+    8 PUSHPOW2	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances _54 spender_addr=54036308310747557864333126337387690331525992843965596551746872537026127165303 spender_dict _55=256
+    DICTUSETB	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict
+    NEWC	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances spender_dict _58
+    STDICT	//  name symbol decimals=9 total_supply=10000000000 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances balances _59
+    2SWAP
+    8 PUSHPOW2	//  name symbol decimals=9 total_supply=10000000000 balances _59 owner_addr=7719472615821079694904732333912527190217998977709370935963838933860875309329 allowances _60=256
+    DICTUSETB	//  name symbol decimals=9 total_supply=10000000000 balances allowances
+    s0 s5 XCHG
+    NEWC	//  allowances symbol decimals=9 total_supply=10000000000 balances name _63
+    STREF	//  allowances symbol decimals=9 total_supply=10000000000 balances _64
+    s1 s4 XCHG	//  allowances balances decimals=9 total_supply=10000000000 symbol _64
+    STREF	//  allowances balances decimals=9 total_supply=10000000000 _65
+    s1 s2 XCHG	//  allowances balances total_supply=10000000000 decimals=9 _65
+    8 STU	//  allowances balances total_supply=10000000000 _67
+    256 STU	//  allowances balances _69
+    STDICT	//  allowances _70
+    STDICT	//  _71
+    ENDC	//  data
+  }>
+  name_data PROC:<{
+    // 
+    71334 PUSHINT	//  function_selector=71334
+    0 TUPLE	//  function_selector=71334 stack
+    new_data CALLDICT	//  function_selector=71334 stack data
+    get_c7 INLINECALLDICT	//  function_selector=71334 stack data _8
+    PUSHNULL	//  function_selector=71334 stack data _8 _9
+    5 TUPLE	//  _7
+  }>
+  name PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  data
+    CTOS	//  ds
+    64 LDU	//  name ds
+    ENDS
+    101 PUSHINT	//  name _18
+    SWAP
+    5582528760121091438 PUSHINT	//  _18 name _19=5582528760121091438
+    NEQ	//  _18 _20
+    THROWANYIF
+  }>
+  symbol_data PROC:<{
+    // 
+    73191 PUSHINT	//  function_selector=73191
+    0 TUPLE	//  function_selector=73191 stack
+    new_data CALLDICT	//  function_selector=73191 stack data
+    get_c7 INLINECALLDICT	//  function_selector=73191 stack data _8
+    PUSHNULL	//  function_selector=73191 stack data _8 _9
+    5 TUPLE	//  _7
+  }>
+  symbol PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  data
+    CTOS	//  ds
+    32 LDU	//  symbol ds
+    ENDS
+    102 PUSHINT	//  symbol _18
+    SWAP
+    1297369934 PUSHINT	//  _18 symbol _19=1297369934
+    NEQ	//  _18 _20
+    THROWANYIF
+  }>
+  decimals_data PROC:<{
+    // 
+    107660 PUSHINT	//  function_selector=107660
+    0 TUPLE	//  function_selector=107660 stack
+    new_data CALLDICT	//  function_selector=107660 stack data
+    get_c7 INLINECALLDICT	//  function_selector=107660 stack data _8
+    PUSHNULL	//  function_selector=107660 stack data _8 _9
+    5 TUPLE	//  _7
+  }>
+  decimals PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  decimals
+    103 PUSHINT	//  decimals _11
+    SWAP	//  _11 decimals
+    9 NEQINT	//  _11 _13
+    THROWANYIF
+  }>
+  total_supply_data PROC:<{
+    // 
+    130834 PUSHINT	//  function_selector=130834
+    0 TUPLE	//  function_selector=130834 stack
+    new_data CALLDICT	//  function_selector=130834 stack data
+    get_c7 INLINECALLDICT	//  function_selector=130834 stack data _8
+    PUSHNULL	//  function_selector=130834 stack data _8 _9
+    5 TUPLE	//  _7
+  }>
+  total_supply PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  total_supply
+    104 PUSHINT	//  total_supply _11
+    SWAP
+    10000000000 PUSHINT	//  _11 total_supply _12=10000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  balance_of_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    new_data CALLDICT	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=112966 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  balance_of PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP
+    10000000000 PUSHINT	//  _11 balance _12=10000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  allowance_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    new_data CALLDICT	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  allowance PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    20000000000 PUSHINT	//  _11 allowance _12=20000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  transfer_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data from
+    -1 PUSHINT	//  function_selector=0 data from _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data from _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data from to
+    -1 PUSHINT	//  function_selector=0 data from to _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data from to _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data from to contract
+    2000000000 PUSHINT	//  function_selector=0 data from to contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data from to contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 _21=0 from contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25
+    0x00000001 PUSHINT	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  transfer PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  from_balance_of_after_transfer_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    10 GETPARAM UNPAIR DROP	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=112966 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  from_balance_of_after_transfer PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP
+    8000000000 PUSHINT	//  _11 balance _12=8000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  to_balance_of_after_transfer_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    10 GETPARAM UNPAIR DROP	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=112966 data _5=-1 _6=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  to_balance_of_after_transfer PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP
+    2000000000 PUSHINT	//  _11 balance _12=2000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  transfer_from_zero_address_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    s2 PUSH	//  function_selector=0 data _5=-1 _6=0
+    address INLINECALLDICT	//  function_selector=0 data from
+    -1 PUSHINT	//  function_selector=0 data from _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data from _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data from to
+    -1 PUSHINT	//  function_selector=0 data from to _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data from to _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data from to contract
+    2000000000 PUSHINT	//  function_selector=0 data from to contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data from to contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 _21=0 from contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25
+    0x00000001 PUSHINT	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  transfer_from_zero_address PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    401 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  transfer_to_zero_address_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data from
+    -1 PUSHINT	//  function_selector=0 data from _9=-1
+    s3 PUSH	//  function_selector=0 data from _9=-1 _10=0
+    address INLINECALLDICT	//  function_selector=0 data from to
+    -1 PUSHINT	//  function_selector=0 data from to _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data from to _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data from to contract
+    2000000000 PUSHINT	//  function_selector=0 data from to contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data from to contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 _21=0 from contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25
+    0x00000001 PUSHINT	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 to amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  transfer_to_zero_address PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    402 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  transfer_amount_exceeds_balance_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data from
+    -1 PUSHINT	//  function_selector=0 data from _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data from _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data from to
+    -1 PUSHINT	//  function_selector=0 data from to _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data from to _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data from to contract
+    100000000000 PUSHINT	//  function_selector=0 data from to contract amount=100000000000
+    1000000000 PUSHINT	//  function_selector=0 data from to contract amount=100000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 _21=0 from contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 in_msg_cell _25
+    0x00000001 PUSHINT	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 to amount=100000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=100000000000 _31 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=100000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  transfer_amount_exceeds_balance PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    403 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  approve_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data owner _9=-1 _10=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    2000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25
+    0x00000002 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  approve PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  spender_allowance_after_approve_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    10 GETPARAM UNPAIR DROP	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  spender_allowance_after_approve PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    2000000000 PUSHINT	//  _11 allowance _12=2000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  approve_from_zero_address_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    s2 PUSH	//  function_selector=0 data _5=-1 _6=0
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data owner _9=-1 _10=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    2000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25
+    0x00000002 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  approve_from_zero_address PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    404 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  approve_to_zero_address_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    s3 PUSH	//  function_selector=0 data owner _9=-1 _10=0
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    2000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25
+    0x00000002 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  approve_to_zero_address PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    405 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  approve_with_approved_amount_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    2000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25
+    0x00000002 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  approve_with_approved_amount PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  spender_allowance_after_approve_with_approved_amount_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    10 GETPARAM UNPAIR DROP	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  spender_allowance_after_approve_with_approved_amount PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    2000000000 PUSHINT	//  _11 allowance _12=2000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  increase_allowance_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data owner _9=-1 _10=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    2000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25
+    0x00000003 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  increase_allowance PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  spender_allowance_after_increase_allowance_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    10 GETPARAM UNPAIR DROP	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  spender_allowance_after_increase_allowance PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    2000000000 PUSHINT	//  _11 allowance _12=2000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  decrease_allowance_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    2000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=2000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25
+    0x00000004 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=2000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  decrease_allowance PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  spender_allowance_after_decrease_allowance_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    10 GETPARAM UNPAIR DROP	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  spender_allowance_after_decrease_allowance PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    18000000000 PUSHINT	//  _11 allowance _12=18000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  decrease_allowance_to_zero_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    20000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=20000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=20000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 in_msg_cell _25
+    0x00000004 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=20000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=20000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=20000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  decrease_allowance_to_zero PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  spender_allowance_after_decrease_allowance_to_zero_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    10 GETPARAM UNPAIR DROP	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  spender_allowance_after_decrease_allowance_to_zero PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP	//  _11 allowance
+    0 NEQINT	//  _11 _13
+    THROWANYIF
+  }>
+  decrease_allowance_below_zero_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data owner
+    -1 PUSHINT	//  function_selector=0 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data owner spender
+    -1 PUSHINT	//  function_selector=0 data owner spender _13=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data owner spender _13=-1 _14=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data owner spender contract
+    25000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=25000000000
+    1000000000 PUSHINT	//  function_selector=0 data owner spender contract amount=25000000000 msg_value=1000000000
+    s6 s4 s2 PUXC2
+    s5 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 _21=0 owner contract msg_value=1000000000 _22
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 in_msg_cell _25
+    0x00000004 PUSHINT	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 in_msg_cell _25 _26
+    NEWC	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 in_msg_cell _25 _26 _27
+    32 STU	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 in_msg_cell _25 _29
+    64 STU	//  function_selector=0 data msg_value=1000000000 spender amount=25000000000 in_msg_cell _31
+    s0 s3 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=25000000000 _31 spender
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=25000000000 _32
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _34
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _35
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _41
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _41 _42
+    5 TUPLE	//  _40
+  }>
+  decrease_allowance_below_zero PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    406 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  transfer_from_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data _5=-1 _6=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data spender
+    -1 PUSHINT	//  function_selector=0 data spender _9=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data spender _9=-1 _10=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data spender from
+    -1 PUSHINT	//  function_selector=0 data spender from _13=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data spender from _13=-1 _14=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data spender from to
+    -1 PUSHINT	//  function_selector=0 data spender from to _17=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data spender from to _17=-1 _18=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data spender from to contract
+    2000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=2000000000 msg_value=1000000000
+    s7 s5 s2 PUXC2
+    s6 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 _25=0 spender contract msg_value=1000000000 _26
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29
+    0x00000005 PUSHINT	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _30
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _30 _31
+    32 STU	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _33
+    64 STU	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _35
+    s0 s4 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=2000000000 _35 from
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=2000000000 _36
+    ROT	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _36 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _37
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _39
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _40
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _46
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _46 _47
+    5 TUPLE	//  _45
+  }>
+  transfer_from PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  allowance_after_transfer_from_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    10 GETPARAM UNPAIR DROP	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  allowance_after_transfer_from PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    18000000000 PUSHINT	//  _11 allowance _12=18000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  from_balance_of_after_transfer_from_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    10 GETPARAM UNPAIR DROP	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=112966 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  from_balance_of_after_transfer_from PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP
+    8000000000 PUSHINT	//  _11 balance _12=8000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  to_balance_of_after_transfer_from_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    10 GETPARAM UNPAIR DROP	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=112966 data _5=-1 _6=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  to_balance_of_after_transfer_from PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP
+    2000000000 PUSHINT	//  _11 balance _12=2000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  owner_has_not_enough_balance_transfer_from_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data _5=-1 _6=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data spender
+    -1 PUSHINT	//  function_selector=0 data spender _9=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data spender _9=-1 _10=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data spender from
+    -1 PUSHINT	//  function_selector=0 data spender from _13=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data spender from _13=-1 _14=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data spender from to
+    -1 PUSHINT	//  function_selector=0 data spender from to _17=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data spender from to _17=-1 _18=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data spender from to contract
+    20000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=20000000000
+    1000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=20000000000 msg_value=1000000000
+    s7 s5 s2 PUXC2
+    s6 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 _25=0 spender contract msg_value=1000000000 _26
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 in_msg_cell _29
+    0x00000005 PUSHINT	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 in_msg_cell _29 _30
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 in_msg_cell _29 _30 _31
+    32 STU	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 in_msg_cell _29 _33
+    64 STU	//  function_selector=0 data msg_value=1000000000 from to amount=20000000000 in_msg_cell _35
+    s0 s4 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=20000000000 _35 from
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=20000000000 _36
+    ROT	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=20000000000 _36 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=20000000000 _37
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _39
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _40
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _46
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _46 _47
+    5 TUPLE	//  _45
+  }>
+  owner_has_not_enough_balance_transfer_from PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    403 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  spender_does_not_have_enough_allowance_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    15438945231642159389809464667825054380435997955418741871927677867721750618658 PUSHINT	//  function_selector=0 data _5=-1 _6=15438945231642159389809464667825054380435997955418741871927677867721750618658
+    address INLINECALLDICT	//  function_selector=0 data spender
+    -1 PUSHINT	//  function_selector=0 data spender _9=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data spender _9=-1 _10=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data spender from
+    -1 PUSHINT	//  function_selector=0 data spender from _13=-1
+    30877890463284318779618929335650108760871995910837483743855355735443501237316 PUSHINT	//  function_selector=0 data spender from _13=-1 _14=30877890463284318779618929335650108760871995910837483743855355735443501237316
+    address INLINECALLDICT	//  function_selector=0 data spender from to
+    -1 PUSHINT	//  function_selector=0 data spender from to _17=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data spender from to _17=-1 _18=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data spender from to contract
+    2000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=2000000000 msg_value=1000000000
+    s7 s5 s2 PUXC2
+    s6 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 _25=0 spender contract msg_value=1000000000 _26
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29
+    0x00000005 PUSHINT	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _30
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _30 _31
+    32 STU	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _33
+    64 STU	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _35
+    s0 s4 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=2000000000 _35 from
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=2000000000 _36
+    ROT	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _36 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _37
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _39
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _40
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _46
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _46 _47
+    5 TUPLE	//  _45
+  }>
+  spender_does_not_have_enough_allowance PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    407 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  spender_has_unlimited_allowance_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    54036308310747557864333126337387690331525992843965596551746872537026127165303 PUSHINT	//  function_selector=0 data _5=-1 _6=54036308310747557864333126337387690331525992843965596551746872537026127165303
+    address INLINECALLDICT	//  function_selector=0 data spender
+    -1 PUSHINT	//  function_selector=0 data spender _9=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data spender _9=-1 _10=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data spender from
+    -1 PUSHINT	//  function_selector=0 data spender from _13=-1
+    23158417847463239084714197001737581570653996933128112807891516801582625927987 PUSHINT	//  function_selector=0 data spender from _13=-1 _14=23158417847463239084714197001737581570653996933128112807891516801582625927987
+    address INLINECALLDICT	//  function_selector=0 data spender from to
+    -1 PUSHINT	//  function_selector=0 data spender from to _17=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data spender from to _17=-1 _18=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data spender from to contract
+    2000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=2000000000
+    1000000000 PUSHINT	//  function_selector=0 data spender from to contract amount=2000000000 msg_value=1000000000
+    s7 s5 s2 PUXC2
+    s6 PUSH
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 _25=0 spender contract msg_value=1000000000 _26
+    build_message INLINECALLDICT	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell
+    NOW	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29
+    0x00000005 PUSHINT	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _30
+    NEWC	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _30 _31
+    32 STU	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _29 _33
+    64 STU	//  function_selector=0 data msg_value=1000000000 from to amount=2000000000 in_msg_cell _35
+    s0 s4 XCHG2	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=2000000000 _35 from
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell to amount=2000000000 _36
+    ROT	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _36 to
+    STSLICER	//  function_selector=0 data msg_value=1000000000 in_msg_cell amount=2000000000 _37
+    256 STU	//  function_selector=0 data msg_value=1000000000 in_msg_cell _39
+    ENDC	//  function_selector=0 data msg_value=1000000000 in_msg_cell _40
+    CTOS	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _46
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _46 _47
+    5 TUPLE	//  _45
+  }>
+  spender_has_unlimited_allowance PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  spender_allowance_after_spender_has_unlimited_allowance_data PROC:<{
+    // 
+    82759 PUSHINT	//  function_selector=82759
+    new_data CALLDICT	//  function_selector=82759 data
+    -1 PUSHINT	//  function_selector=82759 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=82759 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=82759 data owner
+    -1 PUSHINT	//  function_selector=82759 data owner _9=-1
+    54036308310747557864333126337387690331525992843965596551746872537026127165303 PUSHINT	//  function_selector=82759 data owner _9=-1 _10=54036308310747557864333126337387690331525992843965596551746872537026127165303
+    address INLINECALLDICT	//  function_selector=82759 data owner spender
+    PAIR	//  function_selector=82759 data stack
+    get_c7 INLINECALLDICT	//  function_selector=82759 data stack _16
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=82759 stack data _16 _17
+    5 TUPLE	//  _15
+  }>
+  spender_allowance_after_spender_has_unlimited_allowance PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  allowance
+    106 PUSHINT	//  allowance _11
+    SWAP
+    256 PUSHPOW2DEC	//  _11 allowance _12=115792089237316195423570985008687907853269984665640564039457584007913129639935
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  mint_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data account
+    -1 PUSHINT	//  function_selector=0 data account _9=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data account _9=-1 _10=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data account contract
+    50000000000 PUSHINT	//  function_selector=0 data account contract amount=50000000000
+    s4 PUSH
+    1000000000 PUSHINT
+    NEWC
+    s5 s4 s(-1) PUXC2
+    s0 s5 PUXC	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 _17=0 account contract msg_value=1000000000 _18
+    build_message INLINECALLDICT	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell
+    NOW	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21
+    0x00000006 PUSHINT	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _22
+    NEWC	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _22 _23
+    32 STU	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _25
+    64 STU	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _27
+    s0 s4 XCHG2	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=50000000000 _27 account
+    STSLICER	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=50000000000 _28
+    256 STU	//  function_selector=0 data in_msg_cell msg_value=1000000000 _30
+    ENDC	//  function_selector=0 data in_msg_cell msg_value=1000000000 _31
+    CTOS	//  function_selector=0 data in_msg_cell msg_value=1000000000 in_msg
+    s1 s2 XCHG	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _37
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _37 _38
+    5 TUPLE	//  _36
+  }>
+  mint PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  total_supply_after_mint_data PROC:<{
+    // 
+    130834 PUSHINT	//  function_selector=130834
+    0 TUPLE	//  function_selector=130834 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=130834 stack data
+    get_c7 INLINECALLDICT	//  function_selector=130834 stack data _8
+    PUSHNULL	//  function_selector=130834 stack data _8 _9
+    5 TUPLE	//  _7
+  }>
+  total_supply_after_mint PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  total_supply
+    104 PUSHINT	//  total_supply _11
+    SWAP
+    60000000000 PUSHINT	//  _11 total_supply _12=60000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  balance_of_after_mint_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    10 GETPARAM UNPAIR DROP	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=112966 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  balance_of_after_mint PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP
+    60000000000 PUSHINT	//  _11 balance _12=60000000000
+    NEQ	//  _11 _13
+    THROWANYIF
+  }>
+  mint_to_zero_address_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    s2 PUSH	//  function_selector=0 data _5=-1 _6=0
+    address INLINECALLDICT	//  function_selector=0 data account
+    -1 PUSHINT	//  function_selector=0 data account _9=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data account _9=-1 _10=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data account contract
+    50000000000 PUSHINT	//  function_selector=0 data account contract amount=50000000000
+    s4 PUSH
+    1000000000 PUSHINT
+    NEWC
+    s5 s4 s(-1) PUXC2
+    s0 s5 PUXC	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 _17=0 account contract msg_value=1000000000 _18
+    build_message INLINECALLDICT	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell
+    NOW	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21
+    0x00000006 PUSHINT	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _22
+    NEWC	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _22 _23
+    32 STU	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _25
+    64 STU	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _27
+    s0 s4 XCHG2	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=50000000000 _27 account
+    STSLICER	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=50000000000 _28
+    256 STU	//  function_selector=0 data in_msg_cell msg_value=1000000000 _30
+    ENDC	//  function_selector=0 data in_msg_cell msg_value=1000000000 _31
+    CTOS	//  function_selector=0 data in_msg_cell msg_value=1000000000 in_msg
+    s1 s2 XCHG	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _37
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _37 _38
+    5 TUPLE	//  _36
+  }>
+  mint_to_zero_address PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    408 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  burn_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data account
+    -1 PUSHINT	//  function_selector=0 data account _9=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data account _9=-1 _10=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data account contract
+    10000000000 PUSHINT	//  function_selector=0 data account contract amount=10000000000
+    s4 PUSH
+    1000000000 PUSHINT
+    NEWC
+    s5 s4 s(-1) PUXC2
+    s0 s5 PUXC	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 _17=0 account contract msg_value=1000000000 _18
+    build_message INLINECALLDICT	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell
+    NOW	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21
+    0x00000007 PUSHINT	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21 _22
+    NEWC	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21 _22 _23
+    32 STU	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21 _25
+    64 STU	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _27
+    s0 s4 XCHG2	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=10000000000 _27 account
+    STSLICER	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=10000000000 _28
+    256 STU	//  function_selector=0 data in_msg_cell msg_value=1000000000 _30
+    ENDC	//  function_selector=0 data in_msg_cell msg_value=1000000000 _31
+    CTOS	//  function_selector=0 data in_msg_cell msg_value=1000000000 in_msg
+    s1 s2 XCHG	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _37
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _37 _38
+    5 TUPLE	//  _36
+  }>
+  burn PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    SWAP	//  _5 exit_code
+    0 NEQINT	//  _5 _7
+    THROWANYIF
+  }>
+  total_supply_after_burn_data PROC:<{
+    // 
+    130834 PUSHINT	//  function_selector=130834
+    0 TUPLE	//  function_selector=130834 stack
+    10 GETPARAM UNPAIR DROP	//  function_selector=130834 stack data
+    get_c7 INLINECALLDICT	//  function_selector=130834 stack data _8
+    PUSHNULL	//  function_selector=130834 stack data _8 _9
+    5 TUPLE	//  _7
+  }>
+  total_supply_after_burn PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  total_supply
+    104 PUSHINT	//  total_supply _11
+    SWAP	//  _11 total_supply
+    0 NEQINT	//  _11 _13
+    THROWANYIF
+  }>
+  balance_of_after_burn_data PROC:<{
+    // 
+    112966 PUSHINT	//  function_selector=112966
+    10 GETPARAM UNPAIR DROP	//  function_selector=112966 data
+    -1 PUSHINT	//  function_selector=112966 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=112966 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=112966 data account
+    SINGLE	//  function_selector=112966 data stack
+    get_c7 INLINECALLDICT	//  function_selector=112966 data stack _12
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=112966 stack data _12 _13
+    5 TUPLE	//  _11
+  }>
+  balance_of_after_burn PROC:<{
+    //  exit_code data stack actions gas
+    s2 s3 XCHG
+    3 BLKDROP	//  exit_code stack
+    100 PUSHINT	//  exit_code stack _5
+    s0 s2 XCHG	//  _5 stack exit_code
+    0 NEQINT	//  _5 stack _7
+    s1 s2 XCHG	//  stack _5 _7
+    THROWANYIF
+    FIRST	//  balance
+    105 PUSHINT	//  balance _11
+    SWAP	//  _11 balance
+    0 NEQINT	//  _11 _13
+    THROWANYIF
+  }>
+  burn_from_zero_address_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    s2 PUSH	//  function_selector=0 data _5=-1 _6=0
+    address INLINECALLDICT	//  function_selector=0 data account
+    -1 PUSHINT	//  function_selector=0 data account _9=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data account _9=-1 _10=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data account contract
+    10000000000 PUSHINT	//  function_selector=0 data account contract amount=10000000000
+    s4 PUSH
+    1000000000 PUSHINT
+    NEWC
+    s5 s4 s(-1) PUXC2
+    s0 s5 PUXC	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 _17=0 account contract msg_value=1000000000 _18
+    build_message INLINECALLDICT	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell
+    NOW	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21
+    0x00000007 PUSHINT	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21 _22
+    NEWC	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21 _22 _23
+    32 STU	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _21 _25
+    64 STU	//  function_selector=0 data account msg_value=1000000000 amount=10000000000 in_msg_cell _27
+    s0 s4 XCHG2	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=10000000000 _27 account
+    STSLICER	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=10000000000 _28
+    256 STU	//  function_selector=0 data in_msg_cell msg_value=1000000000 _30
+    ENDC	//  function_selector=0 data in_msg_cell msg_value=1000000000 _31
+    CTOS	//  function_selector=0 data in_msg_cell msg_value=1000000000 in_msg
+    s1 s2 XCHG	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _37
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _37 _38
+    5 TUPLE	//  _36
+  }>
+  burn_from_zero_address PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    409 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+  burn_for_less_amount_than_balance_data PROC:<{
+    // 
+    0 PUSHINT	//  function_selector=0
+    new_data CALLDICT	//  function_selector=0 data
+    -1 PUSHINT	//  function_selector=0 data _5=-1
+    7719472615821079694904732333912527190217998977709370935963838933860875309329 PUSHINT	//  function_selector=0 data _5=-1 _6=7719472615821079694904732333912527190217998977709370935963838933860875309329
+    address INLINECALLDICT	//  function_selector=0 data account
+    -1 PUSHINT	//  function_selector=0 data account _9=-1
+    77194726158210796949047323339125271902179989777093709359638389338608753093290 PUSHINT	//  function_selector=0 data account _9=-1 _10=77194726158210796949047323339125271902179989777093709359638389338608753093290
+    address INLINECALLDICT	//  function_selector=0 data account contract
+    50000000000 PUSHINT	//  function_selector=0 data account contract amount=50000000000
+    s4 PUSH
+    1000000000 PUSHINT
+    NEWC
+    s5 s4 s(-1) PUXC2
+    s0 s5 PUXC	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 _17=0 account contract msg_value=1000000000 _18
+    build_message INLINECALLDICT	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell
+    NOW	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21
+    0x00000007 PUSHINT	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _22
+    NEWC	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _22 _23
+    32 STU	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _21 _25
+    64 STU	//  function_selector=0 data account msg_value=1000000000 amount=50000000000 in_msg_cell _27
+    s0 s4 XCHG2	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=50000000000 _27 account
+    STSLICER	//  function_selector=0 data in_msg_cell msg_value=1000000000 amount=50000000000 _28
+    256 STU	//  function_selector=0 data in_msg_cell msg_value=1000000000 _30
+    ENDC	//  function_selector=0 data in_msg_cell msg_value=1000000000 _31
+    CTOS	//  function_selector=0 data in_msg_cell msg_value=1000000000 in_msg
+    s1 s2 XCHG	//  function_selector=0 data msg_value=1000000000 in_msg_cell in_msg
+    TRIPLE	//  function_selector=0 data stack
+    get_c7 INLINECALLDICT	//  function_selector=0 data stack _37
+    s1 s2 XCHG
+    PUSHNULL	//  function_selector=0 stack data _37 _38
+    5 TUPLE	//  _36
+  }>
+  burn_for_less_amount_than_balance PROC:<{
+    //  exit_code data stack actions gas
+    4 BLKDROP	//  exit_code
+    100 PUSHINT	//  exit_code _5
+    410 PUSHINT	//  exit_code _5 _6
+    s1 s2 XCHG	//  _5 exit_code _6
+    NEQ	//  _5 _7
+    THROWANYIF
+  }>
+}END>c

@@ -1,0 +1,23 @@
+int op::transfer() asm "0x00000001 PUSHINT";
+int op::approve() asm "0x00000002 PUSHINT";
+int op::increase_allowance() asm "0x00000003 PUSHINT";
+int op::decrease_allowance() asm "0x00000004 PUSHINT";
+int op::transfer_from() asm "0x00000005 PUSHINT";
+int op::mint() asm "0x00000006 PUSHINT";
+int op::burn() asm "0x00000007 PUSHINT";
+
+int exception::transfer_from_zero_address() asm "401 PUSHINT";
+int exception::transfer_to_zero_address() asm "402 PUSHINT";
+int exception::transfer_amount_exceeds_balance() asm "403 PUSHINT";
+
+int exception::approve_from_zero_address() asm "404 PUSHINT";
+int exception::approve_to_zero_address() asm "405 PUSHINT";
+
+int exception::decreased_allowance_below_zero() asm "406 PUSHINT";
+
+int exception::insufficient_allowance() asm "407 PUSHINT";
+
+int exception::mint_to_the_zero_address() asm "408 PUSHINT";
+
+int exception::burn_from_the_zero_address() asm "409 PUSHINT";
+int exception::burn_amount_exceeds_balance() asm "410 PUSHINT";

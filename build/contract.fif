@@ -1,0 +1,635 @@
+"Asm.fif" include
+// automatically generated from `/Users/user/Library/Application Support/toncli/func-libs/stdlib-tests.func` `/Users/user/WebstormProjects/tonrc20cli/func/nonstdlib.func` `/Users/user/WebstormProjects/tonrc20cli/func/utils.func` `/Users/user/WebstormProjects/tonrc20cli/func/op.func` `/Users/user/WebstormProjects/tonrc20cli/func/tonrc20.func` 
+PROGRAM{
+  DECLPROC address
+  DECLPROC build_message
+  DECLPROC store_data
+  DECLPROC load_data
+  DECLPROC ~get_balance
+  DECLPROC ~set_balance
+  DECLPROC ~get_allowance
+  DECLPROC ~set_allowance
+  DECLPROC _before_token_transfer
+  DECLPROC _after_token_transfer
+  DECLPROC _transfer
+  DECLPROC _approve
+  DECLPROC _spend_allowance
+  DECLPROC _mint
+  DECLPROC _burn
+  DECLPROC transfer
+  DECLPROC approve
+  DECLPROC increase_allowance
+  DECLPROC decrease_allowance
+  DECLPROC transfer_from
+  DECLPROC send_message_back
+  DECLPROC recv_internal
+  DECLPROC recv_external
+  71334 DECLMETHOD name
+  73191 DECLMETHOD symbol
+  107660 DECLMETHOD decimals
+  130834 DECLMETHOD total_supply
+  112966 DECLMETHOD balance_of
+  82759 DECLMETHOD allowance
+  address PROC:<{
+    //  wc addr
+    0 PUSHINT	//  wc addr _2=0
+    2 PUSHINT	//  wc addr _2=0 _3=2
+    NEWC	//  wc addr _2=0 _3=2 _4
+    2 STU	//  wc addr _2=0 _6
+    1 STU	//  wc addr _8
+    s1 s2 XCHG	//  addr wc _8
+    8 STI	//  addr _10
+    256 STU	//  _12
+    ENDC	//  _13
+    CTOS	//  _14
+  }>
+  build_message PROC:<{
+    //  addr op query_id amount payload
+    0 PUSHINT	//  addr op query_id amount payload _6=0
+    24 PUSHINT	//  addr op query_id amount payload _6=0 _7=24
+    NEWC	//  addr op query_id amount payload _6=0 _7=24 _8
+    6 STU	//  addr op query_id amount payload _6=0 _10
+    s0 s6 XCHG2	//  _6=0 op query_id amount payload _10 addr
+    STSLICER	//  _6=0 op query_id amount payload _11
+    ROT	//  _6=0 op query_id payload _11 amount
+    STGRAMS	//  _6=0 op query_id payload _12
+    s1 s4 XCHG	//  payload op query_id _6=0 _12
+    107 STU	//  payload op query_id _26
+    s1 s2 XCHG	//  payload query_id op _26
+    32 STU	//  payload query_id _28
+    64 STU	//  payload msg
+    DUP	//  payload msg msg
+    BBITS	//  payload msg _31
+    s2 PUSH	//  payload msg _31 payload
+    BBITS	//  payload msg _31 _32
+    ADD	//  payload msg _33
+    10 PUSHPOW2DEC	//  payload msg _33 _34=1023
+    GREATER	//  payload msg _35
+    IF:<{	//  payload msg
+      SWAP	//  msg payload
+      ENDC	//  msg _36
+      1 PUSHINT
+      ROT	//  _36 _37=1 msg
+      1 STU	//  _36 _39
+      STREF	//  msg
+    }>ELSE<{	//  payload msg
+      1 PUSHINT	//  payload msg _41=1
+      SWAP	//  payload _41=1 msg
+      1 STU	//  payload _43
+      SWAP	//  _43 payload
+      STBR	//  msg
+    }>
+    ENDC	//  _45
+  }>
+  store_data PROC:<{
+    //  name symbol decimals total_supply balances allowances
+    s0 s5 XCHG
+    NEWC	//  allowances symbol decimals total_supply balances name _6
+    STREF	//  allowances symbol decimals total_supply balances _7
+    s1 s4 XCHG	//  allowances balances decimals total_supply symbol _7
+    STREF	//  allowances balances decimals total_supply _8
+    s1 s2 XCHG	//  allowances balances total_supply decimals _8
+    8 STU	//  allowances balances total_supply _10
+    256 STU	//  allowances balances _12
+    STDICT	//  allowances _13
+    STDICT	//  _14
+    ENDC	//  _15
+    c4 POP
+  }>
+  load_data PROC:<{
+    //  data
+    CTOS	//  ds
+    LDREF	//  name ds
+    LDREF	//  name symbol ds
+    8 LDU	//  name symbol decimals ds
+    256 LDU	//  name symbol decimals total_supply ds
+    LDDICT	//  name symbol decimals total_supply balances ds
+    LDDICT	//  name symbol decimals total_supply balances _34 _33
+    DROP	//  name symbol decimals total_supply balances allowances
+  }>
+  ~get_balance PROCREF:<{
+    //  balances account
+    0 PUSHINT	//  balances account res=0
+    SWAP	//  balances res=0 account
+    REWRITESTDADDR	//  balances res=0 _14 _15
+    NIP	//  balances res=0 account_addr
+    s2 PUSH
+    8 PUSHPOW2	//  balances res=0 account_addr balances _9=256
+    DICTUGET
+    NULLSWAPIFNOT	//  balances res=0 balance_slice balance_found
+    IF:<{	//  balances res=0 balance_slice
+      NIP	//  balances balance_slice
+      256 LDU	//  balances _19 _18
+      DROP	//  balances res
+    }>ELSE<{
+      DROP	//  balances res
+    }>
+  }>
+  ~set_balance PROCREF:<{
+    //  balances account amount
+    SWAP	//  balances amount account
+    REWRITESTDADDR	//  balances amount _12 _13
+    NIP	//  balances amount account_addr
+    SWAP
+    NEWC	//  balances account_addr amount _7
+    256 STU	//  balances account_addr _9
+    s0 s2 XCHG
+    8 PUSHPOW2	//  _9 account_addr balances _10=256
+    DICTUSETB	//  balances
+  }>
+  ~get_allowance PROCREF:<{
+    //  allowances owner spender
+    0 PUSHINT	//  allowances owner spender res=0
+    s0 s2 XCHG	//  allowances res=0 spender owner
+    REWRITESTDADDR	//  allowances res=0 spender _25 _26
+    NIP	//  allowances res=0 spender owner_addr
+    s3 PUSH
+    8 PUSHPOW2	//  allowances res=0 spender owner_addr allowances _10=256
+    DICTUGET
+    NULLSWAPIFNOT	//  allowances res=0 spender owner_slice owner_found
+    IF:<{	//  allowances res=0 spender owner_slice
+      LDDICT	//  allowances res=0 spender _30 _29
+      DROP	//  allowances res=0 spender spender_dict
+      SWAP	//  allowances res=0 spender_dict spender
+      REWRITESTDADDR	//  allowances res=0 spender_dict _31 _32
+      NIP	//  allowances res=0 spender_dict spender_addr
+      SWAP
+      8 PUSHPOW2	//  allowances res=0 spender_addr spender_dict _20=256
+      DICTUGET
+      NULLSWAPIFNOT	//  allowances res=0 spender_slice spender_found
+      IF:<{	//  allowances res=0 spender_slice
+        NIP	//  allowances spender_slice
+        256 LDU	//  allowances _36 _35
+        DROP	//  allowances res
+      }>ELSE<{
+        DROP	//  allowances res
+      }>
+    }>ELSE<{
+      2DROP	//  allowances res
+    }>
+  }>
+  ~set_allowance PROCREF:<{
+    //  allowances owner spender amount
+    s0 s2 XCHG	//  allowances amount spender owner
+    REWRITESTDADDR	//  allowances amount spender _23 _24
+    NIP	//  allowances amount spender owner_addr
+    SWAP	//  allowances amount owner_addr spender
+    REWRITESTDADDR	//  allowances amount owner_addr _25 _26
+    NIP	//  allowances amount owner_addr spender_addr
+    NEWDICT	//  allowances amount owner_addr spender_addr spender_dict
+    s0 s3 XCHG
+    NEWC	//  allowances spender_dict owner_addr spender_addr amount _13
+    256 STU	//  allowances spender_dict owner_addr spender_addr _15
+    s0 s1 s3 XCHG3
+    8 PUSHPOW2	//  allowances owner_addr _15 spender_addr spender_dict _16=256
+    DICTUSETB	//  allowances owner_addr spender_dict
+    NEWC	//  allowances owner_addr spender_dict _19
+    STDICT	//  allowances owner_addr _20
+    s0 s2 XCHG
+    8 PUSHPOW2	//  _20 owner_addr allowances _21=256
+    DICTUSETB	//  allowances
+  }>
+  _before_token_transfer PROCREF:<{
+    //  from to amount
+    3 BLKDROP	// 
+  }>
+  _after_token_transfer PROCREF:<{
+    //  from to amount
+    3 BLKDROP	// 
+  }>
+  _transfer PROC:<{
+    //  from to amount
+    c4 PUSH	//  from to amount _9
+    load_data CALLDICT	//  from to amount name symbol decimals total_supply balances allowances
+    s8 PUSH	//  from to amount name symbol decimals total_supply balances allowances from
+    REWRITESTDADDR	//  from to amount name symbol decimals total_supply balances allowances _49 _50
+    NIP	//  from to amount name symbol decimals total_supply balances allowances from_addr
+    401 PUSHINT	//  from to amount name symbol decimals total_supply balances allowances from_addr _14
+    SWAP	//  from to amount name symbol decimals total_supply balances allowances _14 from_addr
+    0 NEQINT	//  from to amount name symbol decimals total_supply balances allowances _14 _16
+    THROWANYIFNOT
+    s7 PUSH	//  from to amount name symbol decimals total_supply balances allowances to
+    REWRITESTDADDR	//  from to amount name symbol decimals total_supply balances allowances _51 _52
+    NIP	//  from to amount name symbol decimals total_supply balances allowances to_addr
+    402 PUSHINT	//  from to amount name symbol decimals total_supply balances allowances to_addr _21
+    SWAP	//  from to amount name symbol decimals total_supply balances allowances _21 to_addr
+    0 NEQINT	//  from to amount name symbol decimals total_supply balances allowances _21 _23
+    THROWANYIFNOT
+    s1 s8 XCPU	//  from to amount name symbol decimals total_supply allowances balances from
+    ~get_balance INLINECALLDICT	//  from to amount name symbol decimals total_supply allowances balances from_balance
+    s1 s8 XCPU	//  from to amount name symbol decimals total_supply allowances from_balance balances to
+    ~get_balance INLINECALLDICT	//  from to amount name symbol decimals total_supply allowances from_balance balances to_balance
+    403 PUSHINT	//  from to amount name symbol decimals total_supply allowances from_balance balances to_balance _32
+    s3 s9 PUSH2	//  from to amount name symbol decimals total_supply allowances from_balance balances to_balance _32 from_balance amount
+    GEQ	//  from to amount name symbol decimals total_supply allowances from_balance balances to_balance _32 _33
+    THROWANYIFNOT
+    s2 s8 XCPU	//  from to amount name symbol decimals total_supply allowances to_balance balances from_balance amount
+    SUB	//  from to amount name symbol decimals total_supply allowances to_balance balances _36
+    s10 s(-1) PUXC	//  from to amount name symbol decimals total_supply allowances to_balance balances from _36
+    ~set_balance INLINECALLDICT	//  from to amount name symbol decimals total_supply allowances to_balance _37
+    s9 POP	//  balances to amount name symbol decimals total_supply allowances to_balance
+    s6 PUSH	//  balances to amount name symbol decimals total_supply allowances to_balance amount
+    ADD	//  balances to amount name symbol decimals total_supply allowances _39
+    s6 POP	//  balances to _39 name symbol decimals total_supply allowances
+    s7 s6 s5 XCPUXC	//  total_supply to allowances name symbol decimals balances to _39
+    ~set_balance INLINECALLDICT	//  total_supply to allowances name symbol decimals _40
+    s5 POP	//  total_supply balances allowances name symbol decimals
+    3 3 BLKSWAP	//  name symbol decimals total_supply balances allowances
+    store_data CALLDICT
+  }>
+  _approve PROC:<{
+    //  owner spender amount
+    c4 PUSH	//  owner spender amount _9
+    load_data CALLDICT	//  owner spender amount name symbol decimals total_supply balances allowances
+    s8 PUSH	//  owner spender amount name symbol decimals total_supply balances allowances owner
+    REWRITESTDADDR	//  owner spender amount name symbol decimals total_supply balances allowances _34 _35
+    NIP	//  owner spender amount name symbol decimals total_supply balances allowances owner_addr
+    404 PUSHINT	//  owner spender amount name symbol decimals total_supply balances allowances owner_addr _14
+    SWAP	//  owner spender amount name symbol decimals total_supply balances allowances _14 owner_addr
+    0 NEQINT	//  owner spender amount name symbol decimals total_supply balances allowances _14 _16
+    THROWANYIFNOT
+    s7 PUSH	//  owner spender amount name symbol decimals total_supply balances allowances spender
+    REWRITESTDADDR	//  owner spender amount name symbol decimals total_supply balances allowances _36 _37
+    NIP	//  owner spender amount name symbol decimals total_supply balances allowances spender_addr
+    405 PUSHINT	//  owner spender amount name symbol decimals total_supply balances allowances spender_addr _21
+    SWAP	//  owner spender amount name symbol decimals total_supply balances allowances _21 spender_addr
+    0 NEQINT	//  owner spender amount name symbol decimals total_supply balances allowances _21 _23
+    THROWANYIFNOT
+    s8 s1 s3 XCHG3
+    s7 s6 XCHG2	//  total_supply balances decimals name symbol allowances owner spender amount
+    ~set_allowance INLINECALLDICT	//  total_supply balances decimals name symbol allowances
+    s5 s4 s0 XCHG3	//  name symbol decimals total_supply balances allowances
+    store_data CALLDICT
+  }>
+  _spend_allowance PROC:<{
+    //  owner spender amount
+    c4 PUSH	//  owner spender amount _9
+    load_data CALLDICT	//  owner spender amount _21 _22 _23 _24 _25 _26
+    5 1 BLKDROP2	//  owner spender amount allowances
+    2OVER	//  owner spender amount allowances owner spender
+    ~get_allowance INLINECALLDICT	//  owner spender amount _27 _28
+    NIP	//  owner spender amount current_allowance
+    DUP
+    256 PUSHPOW2DEC	//  owner spender amount current_allowance current_allowance _14=115792089237316195423570985008687907853269984665640564039457584007913129639935
+    NEQ	//  owner spender amount current_allowance _15
+    IF:<{	//  owner spender amount current_allowance
+      407 PUSHINT	//  owner spender amount current_allowance _16
+      s1 s2 PUSH2	//  owner spender amount current_allowance _16 current_allowance amount
+      GEQ	//  owner spender amount current_allowance _16 _17
+      THROWANYIFNOT
+      SWAP	//  owner spender current_allowance amount
+      SUB	//  owner spender _19
+      _approve CALLDICT
+    }>ELSE<{
+      4 BLKDROP	// 
+    }>
+  }>
+  _mint PROC:<{
+    //  account amount
+    c4 PUSH	//  account amount _8
+    load_data CALLDICT	//  account amount name symbol decimals total_supply balances allowances
+    s7 PUSH	//  account amount name symbol decimals total_supply balances allowances account
+    REWRITESTDADDR	//  account amount name symbol decimals total_supply balances allowances _39 _40
+    NIP	//  account amount name symbol decimals total_supply balances allowances account_addr
+    408 PUSHINT	//  account amount name symbol decimals total_supply balances allowances account_addr _13
+    SWAP	//  account amount name symbol decimals total_supply balances allowances _13 account_addr
+    0 NEQINT	//  account amount name symbol decimals total_supply balances allowances _13 _15
+    THROWANYIFNOT
+    s2 s6 XCPU	//  account amount name symbol decimals allowances balances total_supply amount
+    ADD	//  account amount name symbol decimals allowances balances total_supply
+    s1 s7 XCPU	//  account amount name symbol decimals allowances total_supply balances account
+    ~get_balance INLINECALLDICT	//  account amount name symbol decimals allowances total_supply balances account_balance
+    s7 PUSH	//  account amount name symbol decimals allowances total_supply balances account_balance amount
+    ADD	//  account amount name symbol decimals allowances total_supply balances _26
+    s7 POP	//  account _26 name symbol decimals allowances total_supply balances
+    s0 s7 s6 XCPUXC	//  account total_supply name symbol decimals allowances balances account _26
+    ~set_balance INLINECALLDICT	//  account total_supply name symbol decimals allowances _27
+    s6 POP	//  balances total_supply name symbol decimals allowances
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3	//  name symbol decimals total_supply balances allowances
+    store_data CALLDICT
+  }>
+  _burn PROC:<{
+    //  account amount
+    c4 PUSH	//  account amount _8
+    load_data CALLDICT	//  account amount name symbol decimals total_supply balances allowances
+    s7 PUSH	//  account amount name symbol decimals total_supply balances allowances account
+    REWRITESTDADDR	//  account amount name symbol decimals total_supply balances allowances _42 _43
+    NIP	//  account amount name symbol decimals total_supply balances allowances account_addr
+    409 PUSHINT	//  account amount name symbol decimals total_supply balances allowances account_addr _13
+    SWAP	//  account amount name symbol decimals total_supply balances allowances _13 account_addr
+    0 NEQINT	//  account amount name symbol decimals total_supply balances allowances _13 _15
+    THROWANYIFNOT
+    s1 s7 XCPU	//  account amount name symbol decimals total_supply allowances balances account
+    ~get_balance INLINECALLDICT	//  account amount name symbol decimals total_supply allowances balances account_balance
+    410 PUSHINT	//  account amount name symbol decimals total_supply allowances balances account_balance _24
+    s1 s8 PUSH2	//  account amount name symbol decimals total_supply allowances balances account_balance _24 account_balance amount
+    GEQ	//  account amount name symbol decimals total_supply allowances balances account_balance _24 _25
+    THROWANYIFNOT
+    s7 PUSH	//  account amount name symbol decimals total_supply allowances balances account_balance amount
+    SUB	//  account amount name symbol decimals total_supply allowances balances _28
+    s8 s(-1) PUXC	//  account amount name symbol decimals total_supply allowances balances account _28
+    ~set_balance INLINECALLDICT	//  account amount name symbol decimals total_supply allowances _29
+    s7 POP	//  balances amount name symbol decimals total_supply allowances
+    s1 s5 XCPU	//  balances amount name symbol decimals allowances total_supply amount
+    SUB	//  balances amount name symbol decimals allowances _30
+    s5 POP	//  balances total_supply name symbol decimals allowances
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3	//  name symbol decimals total_supply balances allowances
+    store_data CALLDICT
+  }>
+  transfer PROC:<{
+    //  src_addr in_msg
+    LDMSGADDR	//  src_addr _5 in_msg
+    256 LDU	//  src_addr _5 _14 _13
+    DROP	//  from to amount
+    _transfer CALLDICT
+  }>
+  approve PROC:<{
+    //  src_addr in_msg
+    LDMSGADDR	//  src_addr _5 in_msg
+    256 LDU	//  src_addr _5 _14 _13
+    DROP	//  owner spender amount
+    _approve CALLDICT
+  }>
+  increase_allowance PROC:<{
+    //  src_addr in_msg
+    c4 PUSH	//  src_addr in_msg _8
+    load_data CALLDICT	//  src_addr in_msg _23 _24 _25 _26 _27 _28
+    5 1 BLKDROP2	//  src_addr in_msg allowances
+    SWAP	//  src_addr allowances in_msg
+    LDMSGADDR	//  src_addr allowances _13 in_msg
+    256 LDU	//  src_addr allowances _13 _32 _31
+    DROP	//  owner allowances spender added_value
+    s2 s3 s1 XCPU2	//  owner added_value spender allowances owner spender
+    ~get_allowance INLINECALLDICT	//  owner added_value spender _33 _34
+    NIP	//  owner added_value spender current_allowance
+    ROT	//  owner spender current_allowance added_value
+    ADD	//  owner spender _21
+    _approve CALLDICT
+  }>
+  decrease_allowance PROC:<{
+    //  src_addr in_msg
+    c4 PUSH	//  src_addr in_msg _8
+    load_data CALLDICT	//  src_addr in_msg _26 _27 _28 _29 _30 _31
+    5 1 BLKDROP2	//  src_addr in_msg allowances
+    SWAP	//  src_addr allowances in_msg
+    LDMSGADDR	//  src_addr allowances _13 in_msg
+    256 LDU	//  src_addr allowances _13 _35 _34
+    DROP	//  owner allowances spender subtracted_value
+    s2 s3 s1 XCPU2	//  owner subtracted_value spender allowances owner spender
+    ~get_allowance INLINECALLDICT	//  owner subtracted_value spender _36 _37
+    NIP	//  owner subtracted_value spender current_allowance
+    406 PUSHINT	//  owner subtracted_value spender current_allowance _21
+    s1 s3 PUSH2	//  owner subtracted_value spender current_allowance _21 current_allowance subtracted_value
+    GEQ	//  owner subtracted_value spender current_allowance _21 _22
+    THROWANYIFNOT
+    ROT	//  owner spender current_allowance subtracted_value
+    SUB	//  owner spender _24
+    _approve CALLDICT
+  }>
+  transfer_from PROC:<{
+    //  src_addr in_msg
+    LDMSGADDR	//  src_addr _6 in_msg
+    LDMSGADDR	//  src_addr _6 _8 in_msg
+    256 LDU	//  src_addr _6 _8 _20 _19
+    DROP	//  spender from to amount
+    s2 s3 s3 PUXCPU	//  amount from to from spender amount
+    _spend_allowance CALLDICT
+    ROT	//  from to amount
+    _transfer CALLDICT
+  }>
+  send_message_back PROC:<{
+    //  src_addr op query_id amount mode reserve
+    DUP	//  src_addr op query_id amount mode reserve reserve
+    0 GTINT	//  src_addr op query_id amount mode reserve _7
+    IF:<{	//  src_addr op query_id amount mode reserve
+      0 PUSHINT	//  src_addr op query_id amount mode reserve _8=0
+      RAWRESERVE
+    }>ELSE<{
+      DROP	//  src_addr op query_id amount mode
+    }>
+    4 -ROLL
+    NEWC	//  mode src_addr op query_id amount _11
+    build_message INLINECALLDICT	//  mode msg
+    SWAP	//  msg mode
+    SENDRAWMSG
+  }>
+  recv_internal PROC:<{
+    //  msg_value in_msg_cell in_msg
+    SWAP	//  msg_value in_msg in_msg_cell
+    CTOS	//  msg_value in_msg cs
+    4 LDU	//  msg_value in_msg flags cs
+    SWAP
+    1 PUSHINT	//  msg_value in_msg cs flags _9=1
+    AND	//  msg_value in_msg cs _10
+    IFJMP:<{	//  msg_value in_msg cs
+      3 BLKDROP	// 
+    }>	//  msg_value in_msg cs
+    OVER	//  msg_value in_msg cs in_msg
+    SEMPTY	//  msg_value in_msg cs _11
+    IFJMP:<{	//  msg_value in_msg cs
+      3 BLKDROP	// 
+    }>	//  msg_value in_msg cs
+    LDMSGADDR	//  msg_value in_msg _119 _118
+    DROP	//  msg_value in_msg src_addr
+    SWAP	//  msg_value src_addr in_msg
+    32 LDU	//  msg_value src_addr _17 in_msg
+    64 LDU	//  msg_value src_addr op query_id in_msg
+    0x00000001 PUSHINT	//  msg_value src_addr op query_id in_msg _23
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _23
+    EQUAL	//  msg_value src_addr op query_id in_msg _24
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      s3 s(-1) PUXC	//  msg_value src_addr op query_id src_addr in_msg
+      transfer CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _26=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _26=0 _27=128
+      BALANCE	//  msg_value src_addr op query_id _26=0 _27=128 _28
+      FIRST	//  msg_value src_addr op query_id _26=0 _27=128 _29
+      10000000 PUSHINT	//  msg_value src_addr op query_id _26=0 _27=128 _29 _30
+      ADD	//  msg_value src_addr op query_id _26=0 _27=128 _31
+      s0 s6 XCHG2	//  _27=128 src_addr op query_id _26=0 _31 msg_value
+      SUB	//  _27=128 src_addr op query_id _26=0 _32
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _26=0 _27=128 _32
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    0x00000002 PUSHINT	//  msg_value src_addr op query_id in_msg _34
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _34
+    EQUAL	//  msg_value src_addr op query_id in_msg _35
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      s3 s(-1) PUXC	//  msg_value src_addr op query_id src_addr in_msg
+      approve CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _37=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _37=0 _38=128
+      BALANCE	//  msg_value src_addr op query_id _37=0 _38=128 _39
+      FIRST	//  msg_value src_addr op query_id _37=0 _38=128 _40
+      10000000 PUSHINT	//  msg_value src_addr op query_id _37=0 _38=128 _40 _41
+      ADD	//  msg_value src_addr op query_id _37=0 _38=128 _42
+      s0 s6 XCHG2	//  _38=128 src_addr op query_id _37=0 _42 msg_value
+      SUB	//  _38=128 src_addr op query_id _37=0 _43
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _37=0 _38=128 _43
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    0x00000003 PUSHINT	//  msg_value src_addr op query_id in_msg _45
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _45
+    EQUAL	//  msg_value src_addr op query_id in_msg _46
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      s3 s(-1) PUXC	//  msg_value src_addr op query_id src_addr in_msg
+      increase_allowance CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _48=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _48=0 _49=128
+      BALANCE	//  msg_value src_addr op query_id _48=0 _49=128 _50
+      FIRST	//  msg_value src_addr op query_id _48=0 _49=128 _51
+      10000000 PUSHINT	//  msg_value src_addr op query_id _48=0 _49=128 _51 _52
+      ADD	//  msg_value src_addr op query_id _48=0 _49=128 _53
+      s0 s6 XCHG2	//  _49=128 src_addr op query_id _48=0 _53 msg_value
+      SUB	//  _49=128 src_addr op query_id _48=0 _54
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _48=0 _49=128 _54
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    0x00000004 PUSHINT	//  msg_value src_addr op query_id in_msg _56
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _56
+    EQUAL	//  msg_value src_addr op query_id in_msg _57
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      s3 s(-1) PUXC	//  msg_value src_addr op query_id src_addr in_msg
+      decrease_allowance CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _59=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _59=0 _60=128
+      BALANCE	//  msg_value src_addr op query_id _59=0 _60=128 _61
+      FIRST	//  msg_value src_addr op query_id _59=0 _60=128 _62
+      10000000 PUSHINT	//  msg_value src_addr op query_id _59=0 _60=128 _62 _63
+      ADD	//  msg_value src_addr op query_id _59=0 _60=128 _64
+      s0 s6 XCHG2	//  _60=128 src_addr op query_id _59=0 _64 msg_value
+      SUB	//  _60=128 src_addr op query_id _59=0 _65
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _59=0 _60=128 _65
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    0x00000005 PUSHINT	//  msg_value src_addr op query_id in_msg _67
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _67
+    EQUAL	//  msg_value src_addr op query_id in_msg _68
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      s3 s(-1) PUXC	//  msg_value src_addr op query_id src_addr in_msg
+      transfer_from CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _70=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _70=0 _71=128
+      BALANCE	//  msg_value src_addr op query_id _70=0 _71=128 _72
+      FIRST	//  msg_value src_addr op query_id _70=0 _71=128 _73
+      10000000 PUSHINT	//  msg_value src_addr op query_id _70=0 _71=128 _73 _74
+      ADD	//  msg_value src_addr op query_id _70=0 _71=128 _75
+      s0 s6 XCHG2	//  _71=128 src_addr op query_id _70=0 _75 msg_value
+      SUB	//  _71=128 src_addr op query_id _70=0 _76
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _70=0 _71=128 _76
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    0x00000006 PUSHINT	//  msg_value src_addr op query_id in_msg _78
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _78
+    EQUAL	//  msg_value src_addr op query_id in_msg _79
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      LDMSGADDR	//  msg_value src_addr op query_id _80 in_msg
+      256 LDU	//  msg_value src_addr op query_id _80 _127 _126
+      DROP	//  msg_value src_addr op query_id _80 _82
+      _mint CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _86=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _86=0 _87=128
+      BALANCE	//  msg_value src_addr op query_id _86=0 _87=128 _88
+      FIRST	//  msg_value src_addr op query_id _86=0 _87=128 _89
+      10000000 PUSHINT	//  msg_value src_addr op query_id _86=0 _87=128 _89 _90
+      ADD	//  msg_value src_addr op query_id _86=0 _87=128 _91
+      s0 s6 XCHG2	//  _87=128 src_addr op query_id _86=0 _91 msg_value
+      SUB	//  _87=128 src_addr op query_id _86=0 _92
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _86=0 _87=128 _92
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    0x00000007 PUSHINT	//  msg_value src_addr op query_id in_msg _94
+    s3 s(-1) PUXC	//  msg_value src_addr op query_id in_msg op _94
+    EQUAL	//  msg_value src_addr op query_id in_msg _95
+    IFJMP:<{	//  msg_value src_addr op query_id in_msg
+      LDMSGADDR	//  msg_value src_addr op query_id _96 in_msg
+      256 LDU	//  msg_value src_addr op query_id _96 _131 _130
+      DROP	//  msg_value src_addr op query_id _96 _98
+      _burn CALLDICT
+      0 PUSHINT	//  msg_value src_addr op query_id _102=0
+      7 PUSHPOW2	//  msg_value src_addr op query_id _102=0 _103=128
+      BALANCE	//  msg_value src_addr op query_id _102=0 _103=128 _104
+      FIRST	//  msg_value src_addr op query_id _102=0 _103=128 _105
+      10000000 PUSHINT	//  msg_value src_addr op query_id _102=0 _103=128 _105 _106
+      ADD	//  msg_value src_addr op query_id _102=0 _103=128 _107
+      s0 s6 XCHG2	//  _103=128 src_addr op query_id _102=0 _107 msg_value
+      SUB	//  _103=128 src_addr op query_id _102=0 _108
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  src_addr op query_id _102=0 _103=128 _108
+      send_message_back CALLDICT
+    }>	//  msg_value src_addr op query_id in_msg
+    s3 s4 XCHG
+    4 BLKDROP	//  src_addr
+    32 PUSHPOW2DEC	//  src_addr _110=4294967295
+    0 PUSHINT	//  src_addr _110=4294967295 _111=0
+    DUP	//  src_addr _110=4294967295 _111=0 _112=0
+    64 PUSHINT	//  src_addr _110=4294967295 _111=0 _112=0 _113=64
+    OVER	//  src_addr _110=4294967295 _111=0 _112=0 _113=64 _114=0
+    send_message_back CALLDICT
+  }>
+  recv_external PROC:<{
+    //  in_msg
+    DROP	// 
+  }>
+  name PROC:<{
+    // 
+    c4 PUSH	//  _6
+    load_data CALLDICT	//  _8 _9 _10 _11 _12 _13
+    5 BLKDROP	//  name
+  }>
+  symbol PROC:<{
+    // 
+    c4 PUSH	//  _6
+    load_data CALLDICT	//  _8 _9 _10 _11 _12 _13
+    s4 s5 XCHG
+    5 BLKDROP	//  symbol
+  }>
+  decimals PROC:<{
+    // 
+    c4 PUSH	//  _6
+    load_data CALLDICT	//  _8 _9 _10 _11 _12 _13
+    s3 s5 XCHG
+    5 BLKDROP	//  decimals
+  }>
+  total_supply PROC:<{
+    // 
+    c4 PUSH	//  _6
+    load_data CALLDICT	//  _8 _9 _10 _11 _12 _13
+    s2 s5 XCHG
+    5 BLKDROP	//  total_supply
+  }>
+  balance_of PROC:<{
+    //  account
+    c4 PUSH	//  account _7
+    load_data CALLDICT	//  account _11 _12 _13 _14 _15 _16
+    s1 s5 XCHG
+    5 BLKDROP	//  account balances
+    SWAP	//  balances account
+    ~get_balance INLINECALLDICT	//  _17 _18
+    NIP	//  _9
+  }>
+  allowance PROC:<{
+    //  owner spender
+    c4 PUSH	//  owner spender _8
+    load_data CALLDICT	//  owner spender _12 _13 _14 _15 _16 _17
+    5 1 BLKDROP2	//  owner spender allowances
+    -ROT	//  allowances owner spender
+    ~get_allowance INLINECALLDICT	//  _18 _19
+    NIP	//  _10
+  }>
+}END>c

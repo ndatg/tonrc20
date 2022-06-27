@@ -1,0 +1,154 @@
+;; approve
+[int, tuple, cell, tuple, int] approve_data() method_id(24) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x3333333333333333333333333333333333333333333333333333333333333333);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 2000000000; ;; 2 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, owner, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::approve(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(spender) ;; to
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ approve(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(25) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+}
+
+;; spender allowance after approve
+[int, tuple, cell, tuple, int] spender_allowance_after_approve_data() method_id(26) {
+  int function_selector = 82759;
+  cell data = get_prev_c4();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x3333333333333333333333333333333333333333333333333333333333333333);
+
+  tuple stack = unsafe_tuple([(owner, spender)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ spender_allowance_after_approve(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(27) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int allowance = first(stack);
+  throw_if(error::allowance_not_equal(), allowance != 2000000000);
+}
+
+;; when the owner is the zero address
+[int, tuple, cell, tuple, int] approve_from_zero_address_data() method_id(28) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice owner = address(-1, 0);
+  slice spender = address(-1, 0x3333333333333333333333333333333333333333333333333333333333333333);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 2000000000; ;; 2 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, owner, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::approve(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(spender) ;; to
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ approve_from_zero_address(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(29) {
+  throw_if(error::exit_code_not_success(), exit_code != exception::approve_from_zero_address());
+}
+
+;; when the spender is the zero address
+[int, tuple, cell, tuple, int] approve_to_zero_address_data() method_id(30) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 2000000000; ;; 2 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, owner, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::approve(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(spender) ;; to
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ approve_to_zero_address(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(31) {
+  throw_if(error::exit_code_not_success(), exit_code != exception::approve_to_zero_address());
+}
+
+;; when the spender had an approved amount
+[int, tuple, cell, tuple, int] approve_with_approved_amount_data() method_id(32) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x2222222222222222222222222222222222222222222222222222222222222222);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 2000000000; ;; 2 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, owner, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::approve(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(spender) ;; to
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ approve_with_approved_amount(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(33) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+}
+
+;; spender allowance after approve
+[int, tuple, cell, tuple, int] spender_allowance_after_approve_with_approved_amount_data() method_id(34) {
+  int function_selector = 82759;
+  cell data = get_prev_c4();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x2222222222222222222222222222222222222222222222222222222222222222);
+
+  tuple stack = unsafe_tuple([(owner, spender)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ spender_allowance_after_approve_with_approved_amount(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(35) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int allowance = first(stack);
+  throw_if(error::allowance_not_equal(), allowance != 2000000000);
+}
+

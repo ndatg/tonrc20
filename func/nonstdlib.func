@@ -1,0 +1,4 @@
+;; (slice, int) dict_get?(cell dict, int key_len, slice index) asm(index dict key_len) "DICTGET" "NULLSWAPIFNOT";
+;; int slice_equal?(slice a, slice b) asm(a b) "SDEQ";
+builder store_builder(builder to, builder from) asm "STBR";
+[int, cell] get_contract_balance() asm "BALANCE";

@@ -1,0 +1,100 @@
+;; name
+[int, tuple, cell, tuple, int] name_data() method_id(0) {
+  int function_selector = 71334;
+  tuple stack = unsafe_tuple([()]);
+  cell data = new_data();
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ name(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(1) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  cell data = first(stack);
+  slice ds = data.begin_parse();
+  int name = ds~load_uint(64);
+  ds.end_parse();
+  throw_if(error::name_not_equal(), name != 0x4d7920546f6b656e);
+}
+
+;; symbol
+[int, tuple, cell, tuple, int] symbol_data() method_id(2) {
+  int function_selector = 73191;
+  tuple stack = unsafe_tuple([()]);
+  cell data = new_data();
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ symbol(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(3) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  cell data = first(stack);
+  slice ds = data.begin_parse();
+  int symbol = ds~load_uint(32);
+  ds.end_parse();
+  throw_if(error::symbol_not_equal(), symbol != 0x4d544b4e);
+}
+
+;; decimals
+[int, tuple, cell, tuple, int] decimals_data() method_id(4) {
+  int function_selector = 107660;
+  tuple stack = unsafe_tuple([()]);
+  cell data = new_data();
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ decimals(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(5) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int decimals = first(stack);
+  throw_if(error::decimals_not_equal(), decimals != 9);
+}
+
+;; total_supply
+[int, tuple, cell, tuple, int] total_supply_data() method_id(6) {
+  int function_selector = 130834;
+  tuple stack = unsafe_tuple([()]);
+  cell data = new_data();
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ total_supply(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(7) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int total_supply = first(stack);
+  throw_if(error::total_supply_not_equal(), total_supply != 10000000000);
+}
+
+;; balance_of
+[int, tuple, cell, tuple, int] balance_of_data() method_id(8) {
+  int function_selector = 112966;
+  cell data = new_data();
+
+  slice account = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  tuple stack = unsafe_tuple([(account)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ balance_of(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(9) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int balance = first(stack);
+  throw_if(error::balance_of_not_equal(), balance != 10000000000);
+}
+
+;; allowance
+[int, tuple, cell, tuple, int] allowance_data() method_id(10) {
+  int function_selector = 82759;
+  cell data = new_data();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x2222222222222222222222222222222222222222222222222222222222222222);
+  tuple stack = unsafe_tuple([(owner, spender)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ allowance(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(11) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int allowance = first(stack);
+  throw_if(error::allowance_not_equal(), allowance != 20000000000);
+}

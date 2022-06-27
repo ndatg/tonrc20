@@ -1,0 +1,1 @@
+builder store_builder(builder to, builder from) asm "STBR";

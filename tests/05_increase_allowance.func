@@ -1,0 +1,48 @@
+;; increase_allowance
+[int, tuple, cell, tuple, int] increase_allowance_data() method_id(36) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x3333333333333333333333333333333333333333333333333333333333333333);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 2000000000; ;; 2 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, owner, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::increase_allowance(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(spender) ;; to
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ increase_allowance(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(37) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+}
+
+;; spender allowance after increase_allowance
+[int, tuple, cell, tuple, int] spender_allowance_after_increase_allowance_data() method_id(38) {
+  int function_selector = 82759;
+  cell data = get_prev_c4();
+
+  slice owner = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice spender = address(-1, 0x3333333333333333333333333333333333333333333333333333333333333333);
+
+  tuple stack = unsafe_tuple([(owner, spender)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ spender_allowance_after_increase_allowance(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(39) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int allowance = first(stack);
+  throw_if(error::allowance_not_equal(), allowance != 2000000000);
+}
+

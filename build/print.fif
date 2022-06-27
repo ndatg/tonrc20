@@ -1,0 +1,6 @@
+"TonUtil.fif" include
+"Asm.fif" include
+
+."contract.fif hex code:" cr
+"contract.fif" include
+2 boc+>B dup Bx. cr

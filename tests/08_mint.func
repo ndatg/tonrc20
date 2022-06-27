@@ -1,0 +1,87 @@
+;; mint
+[int, tuple, cell, tuple, int] mint_data() method_id(66) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice account = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 50000000000; ;; 50 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, account, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::mint(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(account) ;; account
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ mint(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(67) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+}
+
+;; increments total_supply
+[int, tuple, cell, tuple, int] total_supply_after_mint_data() method_id(68) {
+  int function_selector = 130834;
+  tuple stack = unsafe_tuple([()]);
+  cell data = get_prev_c4();
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ total_supply_after_mint(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(69) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int total_supply = first(stack);
+  throw_if(error::total_supply_not_equal(), total_supply != 60000000000);
+}
+
+;; increments account balance
+[int, tuple, cell, tuple, int] balance_of_after_mint_data() method_id(70) {
+  int function_selector = 112966;
+  cell data = get_prev_c4();
+
+  slice account = address(-1, 0x1111111111111111111111111111111111111111111111111111111111111111);
+  tuple stack = unsafe_tuple([(account)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ balance_of_after_mint(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(71) {
+  throw_if(error::exit_code_not_success(), exit_code != 0);
+  int balance = first(stack);
+  throw_if(error::balance_of_not_equal(), balance != 60000000000);
+}
+
+;; when account is zero address
+[int, tuple, cell, tuple, int] mint_to_zero_address_data() method_id(72) {
+  int function_selector = 0;
+  cell data = new_data();
+
+  slice account = address(-1, 0);
+  slice contract = address(-1, 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA);
+  int amount = 50000000000; ;; 50 MTKN
+
+  int msg_value = 1000000000;
+  cell in_msg_cell = build_message(0, account, contract, msg_value, begin_cell());
+  slice in_msg = begin_cell()
+    .store_uint(op::mint(), 32) ;; op
+    .store_uint(now(), 64) ;; query_id
+    .store_slice(account) ;; account
+    .store_uint(amount, 256) ;; amount
+    .end_cell()
+    .begin_parse();
+
+  tuple stack = unsafe_tuple([(msg_value, in_msg_cell, in_msg)]);
+
+  return [function_selector, stack, data, get_c7(), null()];
+}
+
+_ mint_to_zero_address(int exit_code, cell data, tuple stack, cell actions, int gas) method_id(73) {
+  throw_if(error::exit_code_not_success(), exit_code != exception::mint_to_the_zero_address());
+}
