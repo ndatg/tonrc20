@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "ndatg",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "tonweb": "^0.0.47",
     "tonweb-mnemonic": "^1.0.1"
