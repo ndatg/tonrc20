@@ -10,6 +10,4 @@ Please, use it ONLY for education.
 License
 =======
 
-MIT License.
-
-Copyright © 2022 [ndatg](https://github.com/ndatg).
+[MIT License](LICENSE).
