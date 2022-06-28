@@ -10,4 +10,4 @@ Please, use it ONLY for education.
 License
 =======
 
-[MIT License](LICENSE).
+Released under the [MIT License](LICENSE).
